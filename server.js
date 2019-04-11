@@ -39,9 +39,9 @@ const pathy = '.' + route;
 app.use(route, serveIndex(pathy));
 app.use(route, express.static(pathy));
 
-app.get('/', function (req, res) {
-  res.send('Hello API');
-})
+// app.get('/', function (req, res) {
+//   res.send('Hello API');
+// })
 
 app.get('/persons', (req, res) => {
   var persons = JSON.parse(fs.readFileSync('task.json', 'utf8'));
