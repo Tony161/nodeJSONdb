@@ -7,7 +7,8 @@
     "start": "concurrently \"npm run server\" \"cd web && npm start\"",
     "server": "nodemon --inspect server.js",
     "prettier": "prettier --write \"{server.js,web/src/**/*.{js,jsx,css}}\"",
-    "update": "npm i && cd web && npm i"
+		"update": "npm i && cd web && npm i",
+		"heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",

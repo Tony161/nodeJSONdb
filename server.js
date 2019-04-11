@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var cors = require('cors');
-
+const path = require('path');
 const serveIndex = require('serve-index');
 const multer = require('multer');
 md5 = require('js-md5');
@@ -10,6 +10,14 @@ md5 = require('js-md5');
 var app = express();
 app.use(cors());
 app.use(bodyParser());
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'web/build')))
+
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/web/build/index.html'))
+})
 
 var storage = multer.diskStorage({
   destination: 'images/',
@@ -95,7 +103,7 @@ app.post('/upload-image', upload.any(), (req, res, next) => {
   res.send(req.files);
 });
 
-app.listen(3012, function () {
-  console.log('API app started');
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
+  console.log(`Mixing it up on port ${PORT}`)
 })
-
