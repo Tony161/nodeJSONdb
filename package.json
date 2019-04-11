@@ -9,7 +9,7 @@
 		"start": "node server.js",
 		"server": "nodemon --inspect server.js",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"heroku-postbuild": "cd client && npm install && npm run build",
+		"heroku-postbuild": "cd web && npm install && npm run build",
 		"prettier": "prettier --write \"{server.js,web/src/**/*.{js,jsx,css}}\"",
 		"update": "npm i && cd web && npm i"
 	},
