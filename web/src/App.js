@@ -5,10 +5,16 @@ import axios from 'axios';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+		this.state = { data: [] };
+		this.connecToServer = this.connecToServer.bind(this)
+	}
+
+	connecToServer() {
+    fetch('/');
   }
 
   componentDidMount() {
+		this.connecToServer();
     this.loadData();
   }
 

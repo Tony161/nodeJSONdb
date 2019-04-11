@@ -6,18 +6,11 @@ const path = require('path');
 const serveIndex = require('serve-index');
 const multer = require('multer');
 md5 = require('js-md5');
+const port = process.env.PORT || 5000;
 
 var app = express();
 app.use(cors());
 app.use(bodyParser());
-
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, 'web/build')))
-
-// Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/web/build/index.html'))
-})
 
 var storage = multer.diskStorage({
   destination: 'images/',
@@ -41,10 +34,10 @@ var storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
 const route = '/images';
-const path = '.' + route;
+const pathy = '.' + route;
 
-app.use(route, serveIndex(path));
-app.use(route, express.static(path));
+app.use(route, serveIndex(pathy));
+app.use(route, express.static(pathy));
 
 app.get('/', function (req, res) {
   res.send('Hello API');
@@ -103,7 +96,24 @@ app.post('/upload-image', upload.any(), (req, res, next) => {
   res.send(req.files);
 });
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log(`Mixing it up on port ${PORT}`)
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'web/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'web/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'web/build/index.html'));
+  })
+}
+
+//build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/web/public/index.html'));
+})
+
+//start server
+app.listen(port, (req, res) => {
+  console.log( `server listening on port: ${port}`);
 })

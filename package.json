@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"client-install": "npm install --prefix web",
+		"client": "npm start --prefix web",
 		"start": "node server.js",
 		"server": "nodemon --inspect server.js",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
