@@ -28,7 +28,7 @@ class coreTable extends Component {
   }
 
   fileUpload = (file) => {
-    const url = '/upload-image';
+    const url = '/API/upload-image';
     const formData = new FormData();
     formData.append(`image-${this.props.row.id}`, file)
     const config = {
@@ -78,7 +78,7 @@ class coreTable extends Component {
           <td>
             {row.image ? (
               <img
-								src={`/images/${row.image}`}
+								src={`/API/images/${row.image}`}
                 alt="avatar"
                 height="80"
               />
@@ -115,7 +115,7 @@ class coreTable extends Component {
         <td>
           {row.image ? (
             <img
-							src={`/images/${row.image}`}
+							src={`/API/images/${row.image}`}
               alt="avatar"
               height="80"
             />
