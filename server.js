@@ -39,10 +39,6 @@ const pathy = '.' + route;
 app.use(route, serveIndex(pathy));
 app.use(route, express.static(pathy));
 
-// app.get('/', function (req, res) {
-//   res.send('Hello API');
-// })
-
 app.get('/persons', (req, res) => {
   var persons = JSON.parse(fs.readFileSync('task.json', 'utf8'));
   res.send(persons.sort((a, b) => Number(a.id) - Number(b.id)));
@@ -96,24 +92,19 @@ app.post('/upload-image', upload.any(), (req, res, next) => {
   res.send(req.files);
 });
 
-//Static file declaration
 app.use(express.static(path.join(__dirname, 'web/build')));
 
-//production mode
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'web/build')));
-  //
   app.get('*', (req, res) => {
     res.sendfile(path.join(__dirname = 'web/build/index.html'));
   })
 }
 
-//build mode
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/web/public/index.html'));
+  res.sendFile(path.join(__dirname + '/web/public/index.html'));
 })
 
-//start server
 app.listen(port, (req, res) => {
-  console.log( `server listening on port: ${port}`);
+  console.log(`server listening on port: ${port}`);
 })

@@ -5,16 +5,16 @@ import axios from 'axios';
 class App extends Component {
   constructor(props) {
     super(props);
-		this.state = { data: [] };
-		this.connecToServer = this.connecToServer.bind(this)
-	}
+    this.state = { data: [] };
+    this.connecToServer = this.connecToServer.bind(this)
+  }
 
-	connecToServer() {
+  connecToServer() {
     fetch('/');
   }
 
   componentDidMount() {
-		this.connecToServer();
+    this.connecToServer();
     this.loadData();
   }
 
@@ -23,7 +23,6 @@ class App extends Component {
       this.setState({
         data: response.data,
       });
-      console.log(111111111111111)
     });
 
   deleteBtn = id => {

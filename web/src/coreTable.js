@@ -78,7 +78,7 @@ class coreTable extends Component {
           <td>
             {row.image ? (
               <img
-								src={`/images/${row.image}`}
+                src={`/images/${row.image}`}
                 alt="avatar"
                 height="80"
               />
@@ -115,7 +115,7 @@ class coreTable extends Component {
         <td>
           {row.image ? (
             <img
-							src={`/images/${row.image}`}
+              src={`/images/${row.image}`}
               alt="avatar"
               height="80"
             />
