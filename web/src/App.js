@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   loadData = () =>
-    axios.get('/API/persons').then(response => {
+    axios.get('/persons').then(response => {
       this.setState({
         data: response.data,
       });
@@ -27,7 +27,7 @@ class App extends Component {
     });
 
   deleteBtn = id => {
-    axios.delete(`/API/persons/${id}`).then(response => {
+    axios.delete(`/persons/${id}`).then(response => {
       this.setState({
         data: response.data,
       });
@@ -36,7 +36,7 @@ class App extends Component {
 
   addBtn = (name, surname, company) => {
     axios
-      .post('/API/persons', {
+      .post('/persons', {
         name,
         surname,
         company,
@@ -53,7 +53,7 @@ class App extends Component {
 
   editBtn = (id, name, surname, company) => {
     axios
-      .put(`/API/persons/${id}`, {
+      .put(`/persons/${id}`, {
         name,
         surname,
         company,
