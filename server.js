@@ -5,7 +5,7 @@ var cors = require('cors');
 
 const serveIndex = require('serve-index');
 const multer = require('multer');
-md5 = require('js-md5');
+const md5 = require('js-md5');
 
 var app = express();
 app.use(cors());
