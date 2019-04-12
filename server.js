@@ -5,7 +5,7 @@ var cors = require('cors');
 const path = require('path');
 const serveIndex = require('serve-index');
 const multer = require('multer');
-md5 = require('js-md5');
+const md5 = require('js-md5');
 const port = process.env.PORT || 5000;
 
 var app = express();
